@@ -1,26 +1,8 @@
-import "./Body.css"
-import ListItem from "../ListItem/ListItem"
+import React from "react"
 
-const Body = () => {
+const SideMenu = () => {
   return (
-    <div className="body">
-      <div className="body2">
-        <div className="side-menu">
-          <SideMenu />
-        </div>
-        <div className="list-item">
-          <ListItem />
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export default Body
-
-function SideMenu() {
-  return (
-    <>
+    <aside className="h-full min-w-xs border p-8">
       <div>
         <h3>Status</h3>
         <ul>
@@ -44,6 +26,8 @@ function SideMenu() {
           <li>{">"}500k</li>
         </ul>
       </div>
-    </>
+    </aside>
   )
 }
+
+export default SideMenu

@@ -1,20 +1,19 @@
 import Header from "./components/Header/Header"
-import Body from "./components/Body/Body"
+import Menu from "./components/Menu/Menu"
 import Detail from "./components/Detail/Detail"
 import Cart from "./components/Cart/Cart"
 import Footer from "./components/Footer/Footer"
 import Login from "./components/Login/Login"
-import "./App.css"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 function App() {
   return (
     <Router>
-      <div className="app">
+      <div className="flex flex-col h-screen">
         <Header />
         <Switch>
           <Route exact path="/">
-            <Body />
+            <Menu />
           </Route>
           <Route path="/product/:slug" component={Detail} />
           <Route path="/cart">
@@ -24,7 +23,7 @@ function App() {
             <Login />
           </Route>
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   )

@@ -1,7 +1,6 @@
-import "./Detail.css"
 import { bao_hanh, doi_tra } from "./cotent"
 import { cartState, billState } from "../../state"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useRecoilState, useSetRecoilState } from "recoil"
 import { useParams, useHistory } from "react-router-dom"
 import axios from "axios"
@@ -17,10 +16,10 @@ const Detail = () => {
     getDataItem()
   }, [])
   return (
-    <>
+    <div className="w-full px-52">
       {data && <DetailUp data={data} />}
-      <DetailDown />
-    </>
+      {/* <DetailDown /> */}
+    </div>
   )
 }
 
@@ -30,6 +29,7 @@ function DetailUp(props) {
   const history = useHistory()
   const setBillPrice = useSetRecoilState(billState)
   const [cartItems, setCartItems] = useRecoilState(cartState)
+  const selectSize = useRef()
 
   const updateCart = () => {
     const checkItemIndex = cartItems.findIndex((item) => item.slug === slug)
@@ -45,68 +45,72 @@ function DetailUp(props) {
   }
 
   return (
-    <div className="detail">
-      <div className="detail-image">
-        <div className="detail-image-display">
-          <img src={image} alt=""></img>
-        </div>
-        <div className="detail-image-list">
-          {img.map((image, index) => {
-            return (
-              <img key={index} src={image} alt="" onMouseOver={(e) => setImage(e.target.src)}></img>
-            )
-          })}
-        </div>
+    <div className="mt-8 flex gap-16">
+      <div style={{ height: "500px", width: "500px" }}>
+        <img className="h-full w-full" src={img[0]}></img>
       </div>
-      <div className="detail-infor">
-        <h2>{name}</h2>
-        <div className="detail-brand-sku">
-          <span>Brand:</span>
-          <span
-            style={{
-              border: "0.5px solid black",
-            }}
-          ></span>
-          <span>SKU:</span>
-        </div>
-        <span className="detail-price">{formatPrice(price)}đ</span>
-        <div className="detail-description">
-          <pre>{description}</pre>
-        </div>
-        <div className="buy-cart">
-          <button type="buttom" onClick={buyItem}>
-            Buy
+      <div>
+        <h4>GIÀY NMD_R1 PRIMEBLUE</h4>
+        <p>Status: New Arrival</p>
+        <p>490.000 VND</p>
+        <div>
+          <p>Select size</p>
+          <button type="button" className="border h-10 w-64 group">
+            <span className="flex pl-2 items-center w-full">
+              <span className="">35</span>
+              <span ref={selectSize} className="ml-auto mr-2 transform transition duration-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </span>
+            </span>
           </button>
-          <button type="button" onClick={updateCart}>
-            Cart
-          </button>
+          <div className="w-64 h-10 border grid grid-cols-4 gap-8">
+            <button className="h-10 w-10 border">1</button>
+            <button className="h-8 w-8 border">1</button>
+            <button className="h-8 w-8 border">1</button>
+            <button className="h-8 w-8 border">1</button>
+            <button className="h-8 w-8 border">1</button>
+            <button className="h-8 w-8 border">1</button>
+            <button className="h-8 w-8 border">1</button>
+            <button className="h-8 w-8 border">1</button>
+          </div>
         </div>
       </div>
     </div>
   )
 }
 
-function DetailDown() {
-  return (
-    <div>
-      <div className="smt-1">
-        <div className="refund">
-          <h3>Refund</h3>
-          <pre>{doi_tra}</pre>
-        </div>
-        <div className="guarantee">
-          <h3>Guarantee</h3>
-          <pre>{bao_hanh}</pre>
-        </div>
-      </div>
-      <div className="stm-2">
-        <div>
-          <h3>Specifications</h3>
-        </div>
-      </div>
-    </div>
-  )
-}
+// function DetailDown() {
+//   return (
+//     <div>
+//       <div className="smt-1">
+//         <div className="refund">
+//           <h3>Refund</h3>
+//           <pre>{doi_tra}</pre>
+//         </div>
+//         <div className="guarantee">
+//           <h3>Guarantee</h3>
+//           <pre>{bao_hanh}</pre>
+//         </div>
+//       </div>
+//       <div className="stm-2">
+//         <div>
+//           <h3>Specifications</h3>
+//         </div>
+//       </div>
+//     </div>
+//   )
+// }
 
 const formatPrice = (money) => {
   let price = money.split("")
