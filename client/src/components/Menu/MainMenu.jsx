@@ -4,8 +4,6 @@ import { useRecoilValue } from "recoil"
 
 const MainMenu = () => {
   const itemsList = useRecoilValue(itemsListState)
-  console.log(itemsList)
-
   return (
     <div className="px-12 py-4 w-full">
       {/* <div className="flex justify-center h-64 w-96">

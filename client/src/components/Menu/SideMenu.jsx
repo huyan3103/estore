@@ -2,7 +2,7 @@ import React from "react"
 
 const SideMenu = () => {
   return (
-    <aside className="h-full min-w-xs border p-8">
+    <aside className="h-96 min-w-xs border p-8">
       <div>
         <h3>Status</h3>
         <ul>

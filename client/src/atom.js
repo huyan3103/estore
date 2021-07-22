@@ -9,3 +9,8 @@ export const billState = atom({
   key: "billState",
   default: 0,
 })
+
+export const itemDetailState = atom({
+  key: "itemDetailState",
+  default: {},
+})

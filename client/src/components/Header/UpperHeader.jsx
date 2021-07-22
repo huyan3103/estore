@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom"
+import { cartState } from "../../atom"
+import { useRecoilValue } from "recoil"
 
 const UpperHeader = () => {
+  const cartItems = useRecoilValue(cartState)
+
   return (
     <div className="mr-8 text-sm text-white">
       <ul className="flex gap-8">
@@ -56,7 +60,7 @@ const UpperHeader = () => {
                 d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
               />
             </svg>
-            Cart
+            Cart ({cartItems.length})
           </Link>
         </li>
       </ul>

@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 function App() {
   return (
     <Router>
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col bg-white">
         <Header />
         <Switch>
           <Route exact path="/">
